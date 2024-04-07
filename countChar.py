@@ -1,14 +1,13 @@
-str = input("Enter the string: ")
-occ = int(input("Enter the number: "))
+s = input("Enter the string: ")
+occ = int(input("Enter the occurrence of the characters: "))
 hash = {}
-count =0
-for i in range(len(str)):
-    if str[i] not in hash:
-        hash[str[i]] = 1
+count = 0
+for i in s:
+    if i not in hash:
+        hash[i] =  1
     else:
-        hash[str[i]] += 1
+        hash[i] += 1
 for i in hash:
     if hash[i] == occ:
-        count += 1
-        print(i)
+            count += 1
 print(count)

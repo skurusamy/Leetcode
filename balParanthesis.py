@@ -1,32 +1,26 @@
-def isBalanced(s):
-    st = []
-    if len(s) == 0:
-        return False
-    for i in range(len(s)):
-        if s[i] == '(' or s[i] == '[' or s[i] == '{':
-            st.append(s[i])
-        if s[i] == ')':
-            x = st.pop()
-            if x == '{' or x == '{':
+def isBalanced(arr):
+    stack = []
+    for i in arr:
+        if i == '{' or i == '[' or i == '(':
+            stack.append(i)
+        if i == '}':
+            stack.pop()
+            if i == ')' or i == ']':
                 return False
-        elif s[i] == '}':
-            x = st.pop()
-            if x == '(' or x== '[':
+        elif i ==')':
+            stack.pop()
+            if i == '}' or i == ']':
                 return False
-        elif s[i] == ']':
-            x = st.pop()
-            if x == '{' or x == '(':
+        elif i ==']':
+            stack.pop()
+            if i == '}' or i == ')':
                 return False
-    if len(st) != 0:
-            return False
-    else:
-            return True
+    if len(stack) == 0:
+        return True
 
 
-
-# main
-expr = "{([])()}"
-if(isBalanced(expr)):
+arr = "{}{}[{]"
+if isBalanced(arr):
     print("Balanced")
 else:
-    print("Not balanced")
+    print("Not Balanced")
