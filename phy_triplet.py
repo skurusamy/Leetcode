@@ -4,7 +4,6 @@ def findTriplet(arr,n):
     hash = [0] * (maximum+1)
     for i in range(n):
         hash[arr[i]] += 1
-    print(hash)
     for i in range(len(arr)):
         if(hash[i]==0):
             continue
@@ -21,11 +20,8 @@ def findTriplet(arr,n):
     return False
 
 #main
-'''
 n = int(input("Enter the size: "))
 arr=[]
 for i in range(n):
     arr.append(int(input()))
-'''
-arr = [2,3,1,2,3,4,0]
-print(findTriplet(arr,7))
+print(findTriplet(arr,n))

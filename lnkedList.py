@@ -89,20 +89,6 @@ class LinkedList:
             curr = second
         self.head = prev
 
-    def removeDuplicate(self):
-        if self.head is None:
-            return
-        curr = self.head
-        temp =set()
-        while(curr):
-            
-            if curr.data in temp:
-                prev.next = curr.next
-            else:
-                temp.add(curr.data)
-            prev = curr
-            curr = curr.next
-        return 
 
 def union(head1,head2):
     result = set()
@@ -151,25 +137,21 @@ l = LinkedList()
 l.insertFirst(5)
 l.insertFirst(4)
 l.insertFirst(3)
-l.insertFirst(5)
 l.insertFirst(2)
 l.insertLast(6)
 #l.insertMiddle(6, 1)
 #l.delMiddle(2)
 #l.delLast()
-l.display()
+#l.display()
 #l.reverseList()
 #l.display()
-l.removeDuplicate()
-l.display()
-'''
 head1 = l.head
 l2 = LinkedList()
 l2.insertFirst(30)
 l2.insertFirst(20)
 l2.insertFirst(11)
 l2.insertFirst(3)
-l2.display()
+#l2.display()
 head2 = l2.head
 l = [head1,head2]
 head3 = sorting(l)
@@ -179,6 +161,7 @@ l3.display()
 #print(union(head1,head2))
 #print(intersect(head1,head2))
 
-'''
+l3.display()
+l3.reverseList()
 
 

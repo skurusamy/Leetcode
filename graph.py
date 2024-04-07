@@ -64,7 +64,7 @@ class graph:
             for v in val:
               indegree[self.allNodes.index(v)] += 1
         #print(self.allNodes)
-        print(indegree)
+        #print(indegree)
         queue = []
         for nodes in list(self.graph.keys()):
             if indegree[self.allNodes.index(nodes)] == 0:
@@ -83,7 +83,7 @@ g.addEdge(3,4)
 g.addEdge(5,4)
 print(g.graph)
 visited = [False] * len(g.allNodes)
-'''g.dfs(visited)
+g.dfs(visited)
 print("\n")
 visited = [False] * len(g.allNodes)
 g.bfsItr(visited)
@@ -91,3 +91,4 @@ g.bfsItr(visited)
 g.mdfs(visited)
 print("\n")
 g.kahns()
+'''

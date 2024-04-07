@@ -1,48 +1,17 @@
-# n square solution
-'''
-arr = [1,2,3,4,5,1]
-target = 3
-count = 0
-for i in range(len(arr)):
-    for j in range(i+1,len(arr)):
-        if arr[i] + arr[j] == target:
-            count += 1
-print(count)
-'''
-'''
-# n solution
-
-arr = [1,2,3,4,5,1,0]
+Arr = [1,2,3,0]
 target = 3
 count = {}
-pairs=0
-for i in arr:
-    if i in count:
-        count[i] += 1
+for num in Arr:
+    if num not in count:
+        count[num] = 1
     else:
-        count[i] = 1
-for i in range(len(arr)):
-    print(count)
-    val = target - arr[i]
-    if val in count:
-        pairs += count[val]
-    if arr[i] == val:
-        pairs -= 1
-print(pairs//2)
-'''
-#nlogn
-arr = [1,2,3,4,5,1,0,3]
-target = 3
-arr.sort()
-i = count = 0
-j = len(arr)-1
-while j >= i:
-        val = target - arr[i]
-        if val < arr[j]:
-            j -= 1
-        elif val > arr[j]:
-            i += 1
-        else:
-            count += 1
-            j -= 1
+        count[num] = count[num] + 1
+second_val = 0
 print(count)
+for i in range(len(Arr)):
+    val = target - Arr[i]
+    if val in count:
+        second_val += count[val]
+    if val == Arr[i]:
+        second_val = second_val-1
+print(second_val//2)

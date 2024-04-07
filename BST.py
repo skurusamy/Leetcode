@@ -66,7 +66,7 @@ def inorder(root):
         print(root.val, end=" ")
         inorder(root.right)
 
-'''
+
 def preorder(root):
     if (root == None):
         return
@@ -75,7 +75,7 @@ def preorder(root):
         preorder(root.left)
         preorder(root.right)
 
-'''
+
 def postorder(root):
     if (root == None):
         return
@@ -84,7 +84,7 @@ def postorder(root):
         postorder(root.right)
         print(root.val, end=" ")
 
-'''
+
 def getHeight(root):
     h = 0
     if root == None:
@@ -126,7 +126,7 @@ def rightView(root):
     leftViewHelper(root, 1, max_level)
 
 
-def levelOrder(root,level):
+'''def levelOrder(root,level):
     if root == None:
         return
     if level == 1:
@@ -134,7 +134,7 @@ def levelOrder(root,level):
     else:
         levelOrder(root.left,level-1)
         levelOrder(root.right,level-1)
-
+'''
 
 
 def levelOrder(root):
@@ -190,7 +190,7 @@ def chain(root):
             rightCount += 1
             curr = curr.right
         return leftCount + rightCount +1
-'''
+
 def findMin(root):
     if root.left != None:
         return findMin(root.left)
@@ -199,10 +199,9 @@ def findMin(root):
 
 def findMax(root):
     if root.right != None:
-        return findMax(root.right)
+        return findMin(root.right)
     else:
         return root.val
-'''
 def inorderItr(root):
     if root is None:
         return
@@ -228,25 +227,47 @@ def lca(root,p,q):
         return lca(root.left,p,q)
     else:
         return root
-'''
-def postorderItr(root):
-    result = []
+
+def leftView_alt(root):
     if root is None:
-        return result
-    stack =[]
-    stack.append(root)
-    while(stack):  
-        temp = stack.pop()
-        result.insert(0,temp.val)
-        if(temp.left !=  None):
-            stack.append(root.left)
-        if(temp.right != None):
-            stack.append(root.right)
-    return result
+        return
+    output = []
+    queue = [root,]
+    while(queue):
+        size = len(queue)
+        for i in range(size):
+            x = queue.pop(0)
+            if i == size -1:
+                output.append(x.val)  
+            if x.right is not None:
+                queue.append(x.right)  
+            if x.left is not None:
+                queue.append(x.left)
+        
+    return output
+
+def rightView_alt(root):
+    if root is None:
+        return
+    output = []
+    queue = [root,]
+    while(queue):
+        size = len(queue)
+        for i in range(size):
+            x = queue.pop(0)
+            if i == size -1:
+                output.append(x.val) 
+            if x.left is not None:
+                queue.append(x.left) 
+            if x.right is not None:
+                queue.append(x.right)  
+        
+        
+    return output
 
 # main
 root = None
-
+'''\
 root = insert(root, 23)
 insert(root, 4)
 insert(root, 13)
@@ -259,63 +280,51 @@ insert(root, 55)
 insert(root, 50)
 insert(root,65)
 insert(root, 2)
-
 '''
 root = insert(root,50)
 insert(root,69)
 insert(root,45)
-#insert(root,40)
-#insert(root,47)
-#insert(root,39)
-#insert(root,33)
-#insert(root,67)
-#insert(root,72)
-##insert(root,70)
-#print("Inorder")
-#inorder(root)
-
+insert(root,40)
+insert(root,47)
+insert(root,39)
+insert(root,33)
+insert(root,67)
+insert(root,72)
+insert(root,70)
+print("Inorder")
+inorder(root)
+'''
 
 print("\nPreOrder ")
 preorder(root)
-'''
 print("\nPostOrder ")
 postorder(root)
-print("Inorder: ")
-inorder(root)
-print("Max", findMax(root))
-print("Min", findMin(root))
-'''
 h = getHeight(root)
 print("\nHeight: " + str(h))
-'''
+
 #print("Level Order: ")
 #levelOrder(root)
 #Closed node of a given number
-'''
 num = int(input("\nEnter number to be searched: "))
 ans=[-1]
 kSearch(root, num,9999999,ans)
 print(ans[0])
-'''
-'''
+
 val = int(input("\nEnter the value to be searched: "))
 print(search(root,val))
 print()
-print(chain(root))
-'''
+
 '''
 #delete(root,50)
-print("Level Order: ")
+print("\nLevel Order: ")
 levelOrder(root)
-
+'''
 print("\nInorder:" )
 inorderItr(root)
 
 print(lca(root,67,70).val)
-
-print("Post order iterative: -- dfs: \n")
-postOrderList = []
-postOrderList = postorderItr(root)
-print(postOrderList)
 '''
 
+print("\nLeftView: ",leftView_alt(root))
+print("\rightView: ",rightView_alt(root))
+print(chain(root))

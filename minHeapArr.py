@@ -1,55 +1,67 @@
-class minHeap:
-    def __init__(self,size) -> None:
-        self.size = size
-        self.arr = [-1] * (size)
-        self.cursize = -1
+class MinHeap:
+    def __init__(self,size):
+        self.minheap = [0]*size
+        self.capacity = size
+        self.cur_size = 0
 
-    def heapifyUp(self, curIndex):
-        if curIndex <=0 :
-            return
-        parentIndex = (curIndex - 1)// 2
-        while parentIndex >= 0 and self.arr[parentIndex] > self.arr[curIndex]:
-            self.arr[parentIndex], self.arr[curIndex] = self.arr[curIndex],self.arr[parentIndex]
-            curIndex = parentIndex
-            parentIndex = (curIndex - 1)// 2
+    def bubbleup(self,eleIndex):
+        parentIndex = (eleIndex-1) // 2
+        while eleIndex > 0 and self.minheap[eleIndex] < self.minheap[parentIndex]:
+            x = self.minheap[eleIndex]
+            self.minheap[eleIndex]= self.minheap[parentIndex]
+            self.minheap[parentIndex] = x
+            eleIndex = parentIndex
+            parentIndex = (eleIndex-1) //2
+
+    def bubbleDown(self,parentIndex):
+        smallIndex = parentIndex
+        leftIndex = (parentIndex * 2) + 1
+        rightIndex = (parentIndex * 2) + 2
+        if leftIndex < self.cur_size and self.minheap[parentIndex] > self.minheap[leftIndex]:
+            smallIndex = leftIndex
+        if rightIndex < self.cur_size and self.minheap[parentIndex] > self.minheap[rightIndex]:
+            smallIndex = rightIndex
+        if smallIndex != parentIndex:
+            x = self.minheap[smallIndex]
+            self.minheap[smallIndex] = self.minheap[parentIndex]
+            self.minheap[parentIndex] = x
+            self.bubbleDown(smallIndex)
+
+
 
     def insert(self,ele):
-        self.cursize += 1
-        self.arr[self.cursize] = ele
-        self.heapifyUp(self.cursize)
-        
-
-    def heapifyDown(self,curIndex):
-        if curIndex > self.cursize:
-            return 
-        leftChild = (2*curIndex) + 1
-        rightChild = (2*curIndex) + 2
-        smallIndex = curIndex
-        
-        if leftChild <= self.cursize and self.arr[leftChild] < self.arr[curIndex]:
-                smallIndex = leftChild
-        if rightChild <= self.cursize and self.arr[rightChild] < self.arr[curIndex]:
-                smallIndex = rightChild
-        if smallIndex != curIndex:
-                self.arr[smallIndex], self.arr[curIndex] = self.arr[curIndex], self.arr[smallIndex]
-                self.heapifyDown(smallIndex)
-       
-            
-
+        #array is full
+        if self.cur_size == self.capacity:
+            return False
+        else:
+            self.minheap[self.cur_size] = ele
+            self.bubbleup(self.cur_size)
+            self.cur_size += 1
+            return True
     def delete(self,ele):
-        curIndex = self.arr.index(ele)
-        self.arr[self.cursize], self.arr[curIndex] = self.arr[curIndex],self.arr[self.cursize]
-        self.arr[self.cursize] = -1
-        self.cursize -= 1
-        self.heapifyDown(curIndex)
-        
+        #No elements in the array
+        if self.cur_size == 0:
+            return False
+        else:
+            eleIndex = self.minheap.index(ele)
+            self.cur_size -= 1
+            self.minheap[eleIndex] = self.minheap[self.cur_size]
+            self.minheap[self.cur_size]=0
+            self.bubbleDown(eleIndex)
 
-heap = minHeap(10)
-heap.insert(8)
-heap.insert(5)
-heap.insert(6)
-heap.insert(4)
-heap.insert(2)
-print(heap.arr)
-heap.delete(2)
-print(heap.arr)
+            return True
+    def print(self):
+        for i in self.minheap:
+            print(i,end=" ")
+
+h =MinHeap(7)
+h.insert(20)
+h.insert(19)
+h.insert(18)
+h.insert(17)
+h.insert(16)
+h.insert(15)
+h.insert(10)
+h.delete(10)
+h.delete(15)
+h.print()

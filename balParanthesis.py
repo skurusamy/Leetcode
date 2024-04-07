@@ -1,21 +1,32 @@
-def balParanthesis(s):
-    if len(s) ==0:
-        return True
-    stack =[]
-    for x in s:
-        if x == '[' or x == '(' or x == '{':
-            stack.append(x)
-        else:
-            y = stack.pop()
-            if x == '}' and y == '{':
-                return True
-            elif x == ']' and y == '[':
-                return True
-            elif x == '}' and y == '{':
-                return True
-    return False
+def isBalanced(s):
+    st = []
+    if len(s) == 0:
+        return False
+    for i in range(len(s)):
+        if s[i] == '(' or s[i] == '[' or s[i] == '{':
+            st.append(s[i])
+        if s[i] == ')':
+            x = st.pop()
+            if x == '{' or x == '{':
+                return False
+        elif s[i] == '}':
+            x = st.pop()
+            if x == '(' or x== '[':
+                return False
+        elif s[i] == ']':
+            x = st.pop()
+            if x == '{' or x == '(':
+                return False
+    if len(st) != 0:
+            return False
+    else:
+            return True
 
 
 
-s = "([{{}}])"
-print(balParanthesis(s))
+# main
+expr = ")[]}"
+if(isBalanced(expr)):
+    print("Balanced")
+else:
+    print("Not balanced")

@@ -1,6 +1,7 @@
 import random
-l = [4,2,5,6,1,0]
-set_index = []
+l = [4,2,5,6]
+set_index = set()
+'''
 for i in range(len(l)):
     set_index.append(i) #[0,1,2,3]
 while (set_index):
@@ -14,3 +15,9 @@ while (set_index):
         l[ind1] = l[ind2]
         l[ind2] = temp
 print(l)
+'''
+while len(set_index) < len(l):
+    i = random.randrange(0,len(l))
+    if l[i] not in set_index:
+        set_index.add(l[i])
+print(set_index)

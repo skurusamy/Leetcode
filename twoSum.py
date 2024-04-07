@@ -1,16 +1,14 @@
 def twoSum(arr,target):
-    a_pointer = 0
-    b_pointer = len(arr) -1
-    while a_pointer < b_pointer:
-        if arr[a_pointer] + arr[b_pointer]  == target:
-            return a_pointer,b_pointer
-        if arr[a_pointer] + arr[b_pointer] >= target:
-            b_pointer -= 1
-        else:
-            a_pointer += 1
-    return -1,-1
+    prevMap = {}
+    for i in range(len(arr)):
+        sec_val = target - arr[i]
+        if sec_val in prevMap.keys():
+            return [prevMap[sec_val],i]
+        if arr[i] not in prevMap:
+            prevMap[arr[i]] = i
+    return []
 
 
-arr = [2, 5, 9, 11]
-target = 12
+arr = [1,2,1,3,5]
+target = 2
 print(twoSum(arr,target))

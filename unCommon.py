@@ -1,5 +1,5 @@
-str1 = "characters"
-str2 = "alphabets"
+str1 = "character"
+str2 = "alphabetss"
 val = set()
 ans = ""
 for i in str1:

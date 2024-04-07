@@ -6,4 +6,5 @@ ans[0]=1
 for i in coin:
     for j in range(i,num+1):
         ans[j] = ans[j] + ans[j-i]
+print(ans)
 print(ans[num])

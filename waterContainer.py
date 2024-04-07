@@ -9,11 +9,11 @@ for i in range(len(arr)):
 print(maxi)
 """
 i = 0 
-j =len(arr)-1 #have two pointers
+j =len(arr)-1
 while(i<j):
     mini = min(arr[i],arr[j])
-    maxi = max(maxi,mini*(j-i)) #calcuate  the area
-    if(arr[i]<arr[j]): #move the pointer with smaller height
+    maxi = max(maxi,mini*(j-i))
+    if(arr[i]<arr[j]):
         i += 1
     else:
         j -=1
