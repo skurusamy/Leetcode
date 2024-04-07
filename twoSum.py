@@ -1,16 +1,16 @@
-def twoSum(nums,target):
-    ans = []
-    if len(nums) == 0:
-        return ans
-    for i in nums:
-        second_val =  target - i
-        if second_val in nums and nums.index(i) != nums.index(second_val):
-            ans.append(nums.index(i))
-            ans.append(nums.index(second_val))
-            return ans
-    
+def twoSum(arr,target):
+    a_pointer = 0
+    b_pointer = len(arr) -1
+    while a_pointer < b_pointer:
+        if arr[a_pointer] + arr[b_pointer]  == target:
+            return a_pointer,b_pointer
+        if arr[a_pointer] + arr[b_pointer] >= target:
+            b_pointer -= 1
+        else:
+            a_pointer += 1
+    return -1,-1
 
 
-nums = [3,2,4]
-target = 6
-print(twoSum(nums, target))
+arr = [2, 5, 9, 11]
+target = 12
+print(twoSum(arr,target))

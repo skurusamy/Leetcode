@@ -1,13 +1,14 @@
-#n = int(input("Enter the size of an array: "))
-'''
-Max sum in an array
-not max subarray
-
-'''
-arr = [2,3,5,-7,8,-1,9]
-#for i in range(len(arr)):
-#   arr.append(int(input()))
-curr_max = 0
-for i in arr:
-    curr_max = max(curr_max, curr_max + i, i)
-print(curr_max)
+import sys
+arr = [2, 3, 4, 1, 5]
+k=2
+start = 0
+res = -sys.maxsize
+sum = 0
+for end in range(len(arr)):
+    sum += arr[end]
+    end += 1
+    if end >= k:
+        res = max(res,sum)
+        sum -= arr[start]
+        start += 1
+print(res)

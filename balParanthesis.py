@@ -1,26 +1,21 @@
-def isBalanced(arr):
-    stack = []
-    for i in arr:
-        if i == '{' or i == '[' or i == '(':
-            stack.append(i)
-        if i == '}':
-            stack.pop()
-            if i == ')' or i == ']':
-                return False
-        elif i ==')':
-            stack.pop()
-            if i == '}' or i == ']':
-                return False
-        elif i ==']':
-            stack.pop()
-            if i == '}' or i == ')':
-                return False
-    if len(stack) == 0:
+def balParanthesis(s):
+    if len(s) ==0:
         return True
+    stack =[]
+    for x in s:
+        if x == '[' or x == '(' or x == '{':
+            stack.append(x)
+        else:
+            y = stack.pop()
+            if x == '}' and y == '{':
+                return True
+            elif x == ']' and y == '[':
+                return True
+            elif x == '}' and y == '{':
+                return True
+    return False
 
 
-arr = "{}{}[{]"
-if isBalanced(arr):
-    print("Balanced")
-else:
-    print("Not Balanced")
+
+s = "([{{}}])"
+print(balParanthesis(s))
