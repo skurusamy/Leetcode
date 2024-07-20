@@ -1,14 +1,16 @@
-def twoSum(arr,target):
-    prevMap = {}
-    for i in range(len(arr)):
-        sec_val = target - arr[i]
-        if sec_val in prevMap.keys():
-            return [prevMap[sec_val],i]
-        if arr[i] not in prevMap:
-            prevMap[arr[i]] = i
-    return []
+def twoSum(nums,target):
+    ans = []
+    if len(nums) == 0:
+        return ans
+    for i in nums:
+        second_val =  target - i
+        if second_val in nums and nums.index(i) != nums.index(second_val):
+            ans.append(nums.index(i))
+            ans.append(nums.index(second_val))
+            return ans
+    
 
 
-arr = [1,2,1,3,5]
-target = 2
-print(twoSum(arr,target))
+nums = [3,2,4]
+target = 6
+print(twoSum(nums, target))
